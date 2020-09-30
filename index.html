@@ -17,6 +17,16 @@
 
 <body>
 
+ <!--Clickable event in HTML JScript -->
+  
+ <!-- <input id="clickMe" type="button" value="clickme" onclick=<script type="text/javascript" src="instascan.min.js"></script> /> -->
+ 
+ <!--Script for Minified QR Code Reader -->  
+  
+  <!-- <script type="text/javascript" src="instascan.min.js"></script> -->
+  
+  <!--END of Script for Minified QR Code Reader -->
+  
   <script src="index.js"></script>
 
     <header>
@@ -40,40 +50,60 @@
 
 <!--Flex Container Button-->
 
-<p>Click the button to find Local Rides #1</p>
+<!-- <p>Click the button to find Local Rides</p> -->
 
-<div class="flex-container">
-    <div onclick="getLocation()" class="button1">Find Rides</div>
+<div class="container">
+  <div onclick="getLocation()"
+  class="pulse-button">RIDES.co</div>
 </div>
-  
+
 <p id="demo"></p>
+
 <br>
-<br>  
+<br>
+  
+
 <!--Range Slider -->
-<h2>Length of Ride(Km/Mi):</h2>
+<h2>Ride</h2>
 
 <div class="slidecontainer">
-  <input type="range" min="50" max="150" value="100" class="slider" id="myRange">
-  <p>Value: <span id="slideDemo"></span></p>
+  <input type="range" min="50" max="150" value="100" class="slider" id="myLength">
+  <p>Length: <span id="lengthDemo"></span></p>
 </div>
 <br>
-<h2>Ride Start Distance From Home:</h2>
+<h2>Ride Start Distance</h2>
 
 <div class="slidecontainer">
-  <input type="range" min="0" max="100" value="50" class="slider" id="myRange">
-  <p>Value: <span id="slideDemo"></span></p>
+  <input type="range" min="0" max="100" value="50" class="slider" id="myDistance">
+  <p>From Home: <span id="distanceDemo"></span></p>
 </div>  
 <br>
-<h2>Number of Riders on Ride:</h2>
+<h2>Number of</h2>
 
 <div class="slidecontainer">
-  <input type="range" min="0" max="12" value="6" class="slider" id="myRange">
-  <p>Value: <span id="slideDemo"></span></p>
+  <input type="range" min="0" max="12" value="6" class="slider" id="myRiders">
+  <p>Riders: <span id="ridersDemo"></span></p>
 </div> 
 <br>
+<!-- Minified Jscript for QRCode reader -->
+  
+    <video id="preview"></video>
+    <script type="text/javascript">
+      let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+      scanner.addListener('scan', function (content) {
+        console.log(content);
+      });
+      Instascan.Camera.getCameras().then(function (cameras) {
+        if (cameras.length > 0) {
+          scanner.start(cameras[0]);
+        } else {
+          console.error('No cameras found.');
+        }
+      }).catch(function (e) {
+        console.error(e);
+      });
+    </script>
   
 </body>
 </html>
-
-
-
+  
